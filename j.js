@@ -4,6 +4,13 @@ console.log("hi")
 // Bind to the submit event of our form
 $(function () {
     console.log("yo")
+
+    function validateEmail(email) {
+        var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        return re.test(email);
+    }
+
+
     $("#foo").submit(function(event){
       console.log("hello")
       // Abort any pending request
@@ -28,7 +35,8 @@ $(function () {
       request = $.ajax({
           url: "https://script.google.com/macros/s/AKfycbwsTMf_nYqoLnjJLSAcYXV8-88qualzkcAP13VsaEZr/exec",
           type: "post",
-          data: serializedData
+          data: serializedData,
+          dataType: "jsonp"
       });
 
       // Callback handler that will be called on success
